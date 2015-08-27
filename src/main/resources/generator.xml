@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+<!-- mysql的连接驱动，这里直接写的绝对路径 -->
+	<classPathEntry location="E:/mysql-connector-java-5.1.35.jar" />
+	
+ 	<context id="MySqlTables" targetRuntime="MyBatis3">
+ 		<!-- 禁止生成注释，否则注释比代码还多，太乱 -->
+	  	<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+				connectionURL="jdbc:mysql://127.0.0.1:3306/cail?characterEncoding=utf-8"
+				userId="root" password="root">
+		</jdbcConnection>
+		<!-- 实体类生成的目标package和目标项目 -->
+		<javaModelGenerator targetPackage="cc.cail.library.dao.entity"
+				targetProject="library">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- sqlxml生成的目标package和目标项目，我本来是想让它自动放到src/main/resources下的sqlMapper文件夹下 -->
+		<!-- 但这个插件总是给生成到上面 src/main/java下，就这样吧，自己复制到下面就是了 -->
+	    <sqlMapGenerator targetPackage="main.resources.sqlMapper"
+				targetProject="library">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 查询接口mapper生成的目标package和目标项目 -->
+	    <javaClientGenerator type="XMLMAPPER"
+				targetPackage="cc.cail.library.dao.manager" 
+				targetProject="library">
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
+		<!-- 数据库表的配置，这里就这一个user表，就他了，配上id -->
+		<table tableName="user">
+				<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>		
+	</context>
+</generatorConfiguration>

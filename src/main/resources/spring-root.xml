@@ -34,4 +34,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:sqlMapper/*.xml" />
 	</bean>
+	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface"
+			value="cc.cail.library.dao.manager.UserMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 </beans>

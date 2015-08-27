@@ -22,8 +22,7 @@
 		</mvc:message-converters>
 		<mvc:async-support default-timeout="300000" />
 	</mvc:annotation-driven>
-
-	<context:component-scan base-package="me.dacai.*.controller" />
+	<context:component-scan base-package="cc.cail.library.www" />
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="contentNegotiationManager">
@@ -45,18 +44,6 @@
 					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="prefix" value="/WEB-INF/jsp/" />
 					<property name="suffix" value=".jsp" />
-					<property name="order" value="1" />
-				</bean>
-				<bean id="viewResolver"
-					class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-					<property name="viewClass"
-						value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
-					<property name="suffix" value=".ftl" />
-					<property name="contentType" value="text/html;charset=UTF-8" />
-					<property name="exposeRequestAttributes" value="true" />
-					<!-- <property name="exposeSessionAttributes" value="true" /> -->
-					<property name="exposeSpringMacroHelpers" value="true" />
-					<property name="order" value="0" />
 				</bean>
 			</list>
 		</property>
@@ -66,20 +53,6 @@
 			</list>
 		</property>
 	</bean>
-
-	<!-- freemarker的配置 -->
-	<bean id="freemarkerConfigurer"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPath" value="/WEB-INF/ftl/" />
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-	<mvc:resources location="/WEB-INF/s/" mapping="/s/**" />
-	<mvc:resources location="/WEB-INF/ftl/img/" mapping="/img/**" />
-	<mvc:resources location="/WEB-INF/ftl/js/" mapping="/js/**" />
-	<mvc:resources location="/WEB-INF/ftl/css/" mapping="/css/**" />
-	<mvc:resources location="/WEB-INF/ftl/fonts/" mapping="/fonts/**" />
-	<mvc:resources location="/WEB-INF/ftl/edit/" mapping="/edit/**" />
 </beans>
